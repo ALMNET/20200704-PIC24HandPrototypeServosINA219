@@ -1,16 +1,25 @@
 ////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////// PROJECT LIBRARIES //////////////////////////////
+///////////////////////////////// PROJECT INIT /////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-#define     __PIC24FJ64GA002__
+#define   __PIC24FJ64GA002__
 #define _XTAL_FREQ   8000000
 #define FCY _XTAL_FREQ/2
+
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// PROJECT LIBRARIES //////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/i2c1_driver.h"
 #include "INA219_LIB.h"
 
+// INA219 Typedef Struct 
 INA219 ina219;
+
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// STANDARD LIBRARIES /////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 #include <stdio.h>
 #include <string.h>
@@ -44,18 +53,6 @@ INA219 ina219;
 #define HIGH		1
 #define LOW			0
 
-#define ENGAGED		1
-#define DISENGAGED	0
-
-#define SET			0
-#define UNSET		1
-
-#define CLOSED		1
-#define OPEN		0
-
-#define ACTIVATED	1
-#define DEACTIVATED	0
-
 // SERVOMOTOR CONST (Values in usecs))
 #define SERVO_MIN_WIDTH_PULSE   1
 #define SERVO_MAX_WIDTH_PULSE   2
@@ -68,8 +65,8 @@ INA219 ina219;
 #define EMG2_MINIMUM_VALUE      300
 #define EMG2_MAXIMUM_VALUE      700
 
-#define EMG_SENS_1             0x00
-#define EMG_SENS_2             0x01
+#define EMG_SENS_1              0x00
+#define EMG_SENS_2              0x01
 
 #define SERVO_CLOCKWISE         500     // (1ms   * 9999) / 20mS = 499.95
 #define SERVO_NEUTRAL           749     // (1.5ms * 9999) / 20mS = 749.925
@@ -126,23 +123,15 @@ int main(void)
         EMG_SENS_1_Val  = ADC1_GetConversion(EMG_SENS_1);
     }while(EMG_SENS_1_Val < EMG1_MAXIMUM_VALUE);
     
-    
-    
     ADC_Channels_Test();
     
-    
     INA219_Measurement_Stage();
-    
-    
     
     while (1)
     {
         // Data Adquisition
         EMG_SENS_1_Val  = ADC1_GetConversion(EMG_SENS_1);
         EMG_SENS_2_Val  = ADC1_GetConversion(EMG_SENS_2);
-        
-        
-        
         
         // PWM Update Values
         
@@ -152,15 +141,12 @@ int main(void)
         OC4_SecondaryValueSet(800);
         OC5_SecondaryValueSet(1000);
         
-        
         delay_ms(200);
         
     }
 
     return 1;
 }
-
-
 
 void ADC_Channels_Test(){
     
@@ -187,8 +173,6 @@ void delay_ms(long delay_value){
     long x;
     for(x=0; x < delay_value; x++) __delay_ms(1);
 }
-
-
 
 void INA219_Measurement_Stage(){
 

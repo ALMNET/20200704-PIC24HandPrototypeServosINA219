@@ -1,13 +1,8 @@
-/*!
- * 
- * Twitter: @ArduinoEasy
- */
-
 #ifndef _LIB_INA219_
 #define _LIB_INA219_
 
 #include <stdint.h>
-/*	AVR_iot_WG I2C library	*/
+
 #include "mcc_generated_files/drivers/i2c_simple_master.h"
 
 
@@ -20,20 +15,20 @@
 #define INA219_ADDRESS_5                    (0x40)	// 1000000 (A0 = GND, A1 = GND)
 
 //	CONFIG REGISTER (R/W)
-#define INA219_REG_CONFIG                   (0x00)	// config register address
-#define INA219_CONFIG_RESET                 (0x8000)  // Reset Bit
-#define INA219_CONFIG_BVOLTAGERANGE_MASK    (0x2000)  // Bus Voltage Range Mask
+#define INA219_REG_CONFIG                   (0x00)      // config register address
+#define INA219_CONFIG_RESET                 (0x8000)    // Reset Bit
+#define INA219_CONFIG_BVOLTAGERANGE_MASK    (0x2000)    // Bus Voltage Range Mask
 
-#define INA219_CONFIG_GAIN_MASK             (0x1800)  // Gain Mask
-#define INA219_CONFIG_BADCRES_MASK          (0x0780)  // Bus ADC Resolution Mask
-#define INA219_CONFIG_SADCRES_MASK          (0x0078)  // Shunt ADC Resolution and Averaging Mask
-#define INA219_CONFIG_MODE_MASK             (0x0007)  // Operating Mode Mask
+#define INA219_CONFIG_GAIN_MASK             (0x1800)    // Gain Mask
+#define INA219_CONFIG_BADCRES_MASK          (0x0780)    // Bus ADC Resolution Mask
+#define INA219_CONFIG_SADCRES_MASK          (0x0078)    // Shunt ADC Resolution and Averaging Mask
+#define INA219_CONFIG_MODE_MASK             (0x0007)    // Operating Mode Mask
 
-#define INA219_REG_SHUNTVOLTAGE             (0x01)	// shunt voltage register
-#define INA219_REG_BUSVOLTAGE               (0x02)	// bus voltage register
-#define INA219_REG_POWER                    (0x03)	// power register
-#define INA219_REG_CURRENT                  (0x04)	// current register
-#define INA219_REG_CALIBRATION              (0x05)	// calibration register
+#define INA219_REG_SHUNTVOLTAGE             (0x01)	    // shunt voltage register
+#define INA219_REG_BUSVOLTAGE               (0x02)	    // bus voltage register
+#define INA219_REG_POWER                    (0x03)	    // power register
+#define INA219_REG_CURRENT                  (0x04)	    // current register
+#define INA219_REG_CALIBRATION              (0x05)	    // calibration register
 
 //	bus voltage range values
 enum{

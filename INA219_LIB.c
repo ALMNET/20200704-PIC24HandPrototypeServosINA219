@@ -1,9 +1,3 @@
-/*!
- * @file easy_INA219.c
- *
- * twitter: @ArduinoEasy
- */
-
 #include "INA219_LIB.h"
 
 
